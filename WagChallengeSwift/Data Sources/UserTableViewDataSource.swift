@@ -33,6 +33,8 @@ class UserTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         if yVal < 0 {
             scrollView.setContentOffset(CGPoint.zero, animated: false)
         }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -53,7 +55,7 @@ class UserTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         return UITableViewCell()
     }
-        
+    
     // MARK: - methods
     func adopt(tableView: UITableView) {
         tableView.register(UINib(nibName: "UserTableViewCell", bundle: .main), forCellReuseIdentifier: "UserTableViewCell")

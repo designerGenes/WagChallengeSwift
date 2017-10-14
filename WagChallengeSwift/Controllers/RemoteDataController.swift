@@ -25,19 +25,20 @@ class RemoteDataController: NSObject {
     private var activeDownloaders = [URL: ImageDownloader]()
     
     // MARK: - methods
-    func downloadImage(at url: URL, maxSize: CGSize, applyCircleFilter: Bool = false, callback: UIImageCallback?) {
+    func downloadImage(at url: URL,callback: UIImageCallback?) {
         if let sessionManager = sessionManager {
             let downloader = ImageDownloader(sessionManager: sessionManager)
             activeDownloaders[url] = downloader
-            let filter = applyCircleFilter ? AspectScaledToFillSizeCircleFilter(size: maxSize) : nil
             
-            downloader.download(URLRequest(url: url), filter: filter) { res in
+            
+            downloader.download(URLRequest(url: url), filter: nil) { res in
                 DispatchQueue.main.async {
                     guard res.error == nil else {
                         print("Error: \(res.error!.localizedDescription)")
                         callback?(nil)
                         return
                     }
+                    
                     callback?(res.result.value)
                     self.activeDownloaders[url] = nil
                 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import AlamofireImage
 
 class UserTableViewCell: UITableViewCell {
     // MARK: - outlets
@@ -155,8 +156,9 @@ class UserTableViewCell: UITableViewCell {
     func downloadGravatar(from url: URL) {
         self.gravatarImageView.image = nil
         self.activityIndicator.startAnimating()
-        RemoteDataController.sharedInstance.downloadImage(at: url, maxSize: gravatarImageView.frame.size, applyCircleFilter: true) { img in
+        RemoteDataController.sharedInstance.downloadImage(at: url) { img in
             if let img = img {
+                let img = img.af_imageRoundedIntoCircle()
                 DispatchQueue.main.async {
                     self.gravatarImageView.image = img
                     self.gravatarImage = img
