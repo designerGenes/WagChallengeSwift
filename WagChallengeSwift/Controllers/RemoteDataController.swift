@@ -19,30 +19,40 @@ class RemoteDataController: NSObject {
     // MARK: - properties
     static var sharedInstance = RemoteDataController()
     private let baseURL = URL(string: "https://api.stackexchange.com/2.2/users?site=stackoverflow")!
-    let bgroundQueue = DispatchQueue(label: "networkBGQueue", qos: .background)
+    private let bgroundQueue = DispatchQueue(label: "networkBGQueue", qos: .background)
     private var sessionManager: SessionManager?
+    private let imageCache = AutoPurgingImageCache()
     var isDownloading: Bool = false
     private var activeDownloaders = [URL: ImageDownloader]()
     
     // MARK: - methods
-    func downloadImage(at url: URL,callback: UIImageCallback?) {
+    func downloadImage(at url: URL, callback: UIImageCallback?) {
         if let sessionManager = sessionManager {
-            let downloader = ImageDownloader(sessionManager: sessionManager)
-            activeDownloaders[url] = downloader
-            
-            
-            downloader.download(URLRequest(url: url), filter: nil) { res in
-                DispatchQueue.main.async {
-                    guard res.error == nil else {
-                        print("Error: \(res.error!.localizedDescription)")
-                        callback?(nil)
-                        return
+            let urlRequest = URLRequest(url: url)
+            if let cachedImg = imageCache.image(for: urlRequest, withIdentifier: url.absoluteString) {
+                callback?(cachedImg)
+            } else {
+                let downloader = ImageDownloader(sessionManager: sessionManager)
+                activeDownloaders[url] = downloader
+                downloader.download(urlRequest, filter: nil) { res in
+                    DispatchQueue.main.async {
+                        guard res.error == nil else {
+                            print("Error: \(res.error!.localizedDescription)")
+                            callback?(nil)
+                            return
+                        }
+                        let img = res.result.value
+                        if let img = img {
+                            self.imageCache.add(img, for: urlRequest, withIdentifier: url.absoluteString)
+                        }
+                        callback?(img)
+                        self.activeDownloaders[url] = nil
                     }
-                    
-                    callback?(res.result.value)
-                    self.activeDownloaders[url] = nil
                 }
             }
+            
+            
+           
         }
     }
     

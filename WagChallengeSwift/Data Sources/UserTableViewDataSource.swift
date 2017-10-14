@@ -24,6 +24,7 @@ class UserTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         userArr = list
         tableView?.reloadData()
         tableView?.backgroundView?.backgroundColor = userArr.count % 2 == 0 ? UIColor.named(.gray_0) : UIColor.named(.gray_1)
+        tableView?.isHidden = false
     }
     
     // MARK: - UITableView methods

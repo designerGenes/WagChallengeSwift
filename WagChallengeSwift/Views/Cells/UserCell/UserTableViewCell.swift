@@ -177,6 +177,7 @@ class UserTableViewCell: UITableViewCell {
             iconBadge.removeFromSuperview()
         }
         
+        gravatarImageView.image = nil
         for tapArea in iconBadgeTapAreas {
             tapArea.removeFromSuperview()
         }
