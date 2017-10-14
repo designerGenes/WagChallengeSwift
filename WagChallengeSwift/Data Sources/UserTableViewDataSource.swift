@@ -8,7 +8,6 @@
 //
 
 import Foundation
-import Cache
 import Alamofire
 import SwiftyJSON
 import UIKit

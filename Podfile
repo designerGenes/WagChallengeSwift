@@ -6,8 +6,6 @@ target 'WagChallengeSwift' do
   use_frameworks!
 
   # Pods for WagChallengeSwift
-  pod 'Alamofire'
-  pod 'Cache'
 	pod 'SwiftyJSON'
 	pod 'Alamofire'
     pod 'AlamofireImage', '~> 3.3'

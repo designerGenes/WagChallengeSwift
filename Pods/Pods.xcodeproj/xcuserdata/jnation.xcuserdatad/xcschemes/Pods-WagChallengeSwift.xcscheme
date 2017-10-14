@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "25FD7E532581E4C869E6E0E5C5A757E1"
+               BlueprintIdentifier = "07D439A1F2C0A344134DD459B5C6900B"
                BuildableName = "Pods_WagChallengeSwift.framework"
                BlueprintName = "Pods-WagChallengeSwift"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "25FD7E532581E4C869E6E0E5C5A757E1"
+            BlueprintIdentifier = "07D439A1F2C0A344134DD459B5C6900B"
             BuildableName = "Pods_WagChallengeSwift.framework"
             BlueprintName = "Pods-WagChallengeSwift"
             ReferencedContainer = "container:Pods.xcodeproj">
