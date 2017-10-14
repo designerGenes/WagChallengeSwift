@@ -23,10 +23,11 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         UIView.animate(withDuration: 2,
                        delay: 0,
-                       usingSpringWithDamping: 0,
-                       initialSpringVelocity: 0,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 1,
                        options: [.autoreverse, .repeat], animations: {
                             self.contentLoadingLabel.alpha = 1
         }, completion: nil)

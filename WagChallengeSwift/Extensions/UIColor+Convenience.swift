@@ -12,7 +12,6 @@ import UIKit
 import Foundation
 import UIKit
 
-
 extension UIColor {
 	convenience init(hexString: String) {
 		var cString: String = hexString.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines).uppercased()

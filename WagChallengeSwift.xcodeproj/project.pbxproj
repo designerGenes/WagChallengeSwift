@@ -26,6 +26,7 @@
 		FE0FEFAE1F919881003E6398 /* Int+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FEFAD1F919881003E6398 /* Int+Convenience.swift */; };
 		FE0FEFAF1F91B2EE003E6398 /* SanFranciscoDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE0FEFAA1F919057003E6398 /* SanFranciscoDisplay-Bold.otf */; };
 		FE0FEFB01F91B2F1003E6398 /* SanFranciscoDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE0FEFA91F918FEE003E6398 /* SanFranciscoDisplay-Regular.otf */; };
+		FED8BE4F1F91FCC5005AE52F /* IconBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED8BE4E1F91FCC5005AE52F /* IconBadge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		FE0FEFA91F918FEE003E6398 /* SanFranciscoDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Regular.otf"; sourceTree = "<group>"; };
 		FE0FEFAA1F919057003E6398 /* SanFranciscoDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Bold.otf"; sourceTree = "<group>"; };
 		FE0FEFAD1F919881003E6398 /* Int+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Convenience.swift"; sourceTree = "<group>"; };
+		FED8BE4E1F91FCC5005AE52F /* IconBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconBadge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				FE0FEF8D1F9173A2003E6398 /* User.swift */,
+				FED8BE4E1F91FCC5005AE52F /* IconBadge.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				FE0FEF8B1F9171CD003E6398 /* UserTableViewDataSource.swift in Sources */,
 				FE0FEFA61F918610003E6398 /* UIImage+Convenience.swift in Sources */,
 				FE0FEF981F917B52003E6398 /* UserTableViewCell.swift in Sources */,
+				FED8BE4F1F91FCC5005AE52F /* IconBadge.swift in Sources */,
 				FE0FEFA01F917BFC003E6398 /* ClosureNames.swift in Sources */,
 				FE0FEF921F9178C3003E6398 /* RemoteDataController.swift in Sources */,
 				FE0FEFA31F917C54003E6398 /* UIColor+Convenience.swift in Sources */,

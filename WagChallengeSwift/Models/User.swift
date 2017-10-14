@@ -16,21 +16,6 @@ struct BadgeRecord {
     var iconBadges: [IconBadge]
 }
 
-class IconBadge: UIImageView {
-    var lore: String?
-    init(named name: LocalAssetName, lore: String) {
-        super.init(image: UIImage(fromAssetNamed: name))
-        self.lore = lore
-        self.contentMode = .scaleAspectFit
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-}
-
-
-
 class User: NSObject {
     // MARK: - properties
     static var averageReputation: Int = 0
@@ -40,9 +25,7 @@ class User: NSObject {
     var reputation: Int?
     
     // MARK: - methods
-   
-    
-    func determineBadges(from json: JSON) -> BadgeRecord {
+    func generateBadgeRecord(from json: JSON) -> BadgeRecord {
         var iconBadges = [IconBadge]()
         var bronzeCount = 0
         var silverCount = 0
@@ -71,11 +54,11 @@ class User: NSObject {
                 }
             }
         }
+        
         if let reputation = json["reputation"].int {
             self.reputation = reputation
             
-            if let repChangeYear = json["reputation_change_year"].int, let repChangeQuarter = json["reputation_change_quarter"].int,
-            let repChangeMonth = json["reputation_change_month"].int, let repChangeWeek = json["reputation_change_week"].int,
+            if let repChangeYear = json["reputation_change_year"].int, let repChangeWeek = json["reputation_change_week"].int,
                 let repChangeDay = json["reputation_change_day"].int {
                 
                 // REPUTABLE: user has above average reputation
@@ -103,7 +86,7 @@ class User: NSObject {
     init(fromJSON json: JSON) {
         super.init()
         displayName = json["display_name"].string ?? "unknown"
-        badgeRecord = determineBadges(from: json)
+        badgeRecord = generateBadgeRecord(from: json)
         if let urlString = json["profile_image"].string {
             gravatarURL = URL(string: urlString)
         }

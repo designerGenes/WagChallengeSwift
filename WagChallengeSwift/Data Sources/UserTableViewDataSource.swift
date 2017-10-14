@@ -33,8 +33,6 @@ class UserTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         if yVal < 0 {
             scrollView.setContentOffset(CGPoint.zero, animated: false)
         }
-        
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -64,7 +62,6 @@ class UserTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         tableView.allowsSelection = false
         tableView.separatorColor = .clear
         tableView.separatorStyle = .none
-        
         self.tableView = tableView
     }
 }

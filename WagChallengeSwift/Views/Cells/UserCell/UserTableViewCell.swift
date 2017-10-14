@@ -12,12 +12,10 @@ import AlamofireImage
 
 class UserTableViewCell: UITableViewCell {
     // MARK: - outlets
-    
     @IBOutlet weak var imageViewShell: UIView!
     @IBOutlet weak var gravatarImageView: UIImageView!
     @IBOutlet weak var displayNameLabel: UILabel!
     @IBOutlet weak var badgeCountLabel: UILabel!
-    
     
     // MARK: - properties
     private var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
@@ -32,11 +30,6 @@ class UserTableViewCell: UITableViewCell {
     
     private func sfDisplayBold(size: CGFloat) -> UIFont {
         return UIFont(name: "SanFranciscoDisplay-Bold", size: size)!
-    }
-    
-    // MARK: - RemoteDataDelegate methods
-    func didFinishDownloading(image: UIImage, in controller: RemoteDataController) {
-        activityIndicator.stopAnimating()
     }
     
     // MARK: - methods
@@ -67,7 +60,7 @@ class UserTableViewCell: UITableViewCell {
             ])
     }
     
-    @objc func hideDescriptionText() {
+    @objc func resetToNormalLayout() {
         for badge in iconBadges {
             badge.alpha = 1
             badge.transform = CGAffineTransform.identity
@@ -89,8 +82,7 @@ class UserTableViewCell: UITableViewCell {
                 iconBadge.widthAnchor.constraint(equalTo: iconBadge.heightAnchor).isActive = true
                 iconBadge.topAnchor.constraint(equalTo: badgeCountLabel.bottomAnchor, constant: 0).isActive = true
                 let leftAnchorView = z > 0 ? iconBadges[z-1].rightAnchor : badgeCountLabel.leftAnchor
-                let leftMargin: CGFloat = 8 //= z > 0 ?  8 : 8
-                iconBadge.leftAnchor.constraint(equalTo: leftAnchorView, constant: leftMargin).isActive = true
+                iconBadge.leftAnchor.constraint(equalTo: leftAnchorView, constant: 8).isActive = true
                 
                 let tapInterceptArea = UIControl()
                 iconBadgeTapAreas.append(tapInterceptArea)
@@ -100,11 +92,10 @@ class UserTableViewCell: UITableViewCell {
                 tapInterceptArea.heightAnchor.constraint(equalTo: iconBadge.heightAnchor).isActive = true
                 tapInterceptArea.centerXAnchor.constraint(equalTo: iconBadge.centerXAnchor).isActive = true
                 tapInterceptArea.centerYAnchor.constraint(equalTo: iconBadge.centerYAnchor).isActive = true
-
                 tapInterceptArea.tag = z
-                
+    
                 tapInterceptArea.addTarget(self, action: #selector(touchedDownOnBadge(control:)), for: .touchDown)
-                tapInterceptArea.addTarget(self, action: #selector(hideDescriptionText), for: [.touchUpInside, .touchDragOutside, .touchCancel])
+                tapInterceptArea.addTarget(self, action: #selector(resetToNormalLayout), for: [.touchUpInside, .touchDragOutside, .touchCancel])
 
             }
         }
@@ -149,7 +140,7 @@ class UserTableViewCell: UITableViewCell {
         badgeCountTapArea?.heightAnchor.constraint(equalTo: badgeCountLabel.heightAnchor).isActive = true
         badgeCountTapArea?.widthAnchor.constraint(equalTo: badgeCountLabel.widthAnchor).isActive = true
         badgeCountTapArea?.addTarget(self, action: #selector(touchedDownOnBadgeCount(control:)), for: .touchDown)
-        badgeCountTapArea?.addTarget(self, action: #selector(hideDescriptionText), for: [.touchUpInside, .touchDragOutside, .touchCancel])
+        badgeCountTapArea?.addTarget(self, action: #selector(resetToNormalLayout), for: [.touchUpInside, .touchDragOutside, .touchCancel])
         layoutSubviews()
     }
     
@@ -224,7 +215,5 @@ class UserTableViewCell: UITableViewCell {
         if let gravatarURL = user.gravatarURL {
             downloadGravatar(from: gravatarURL)
         }
-        
-        
     }
 }
