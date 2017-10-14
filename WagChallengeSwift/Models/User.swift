@@ -84,16 +84,14 @@ class User: NSObject {
                     iconBadges.append(reputableBadge)
                 }
                 
-                // FAST MOVER: user has moved more in day than week, or more in month than in quarter
-                //              this assumes all retrieved values are updated live on the API side
-                //              so change_week is a number determined with today's change_day in mind
-                if (repChangeDay > repChangeWeek / 7) || (repChangeMonth > repChangeQuarter / 4) {
+                // FAST MOVER: user reputation has moved above average amount this week
+                if repChangeWeek * 52 > repChangeYear {
                     let fastMoverBadge = IconBadge(named: .fastMoverBadge, lore: "moving fast!")
                     iconBadges.append(fastMoverBadge)
                 }
                 
-                // RECENT SURGE: user has experienced high amount of reputation change this month
-                if repChangeMonth > (repChangeYear / 12) {
+                // RECENT SURGE: user has experienced high amount of reputation change today
+                if (repChangeDay > repChangeWeek / 7) {
                     let recentSurgeBadge = IconBadge(named: .recentSurgeBadge, lore: "recently popular")
                     iconBadges.append(recentSurgeBadge)
                 }
@@ -105,7 +103,6 @@ class User: NSObject {
     init(fromJSON json: JSON) {
         super.init()
         displayName = json["display_name"].string ?? "unknown"
-//        print("created user with name \(displayName)")
         badgeRecord = determineBadges(from: json)
         if let urlString = json["profile_image"].string {
             gravatarURL = URL(string: urlString)

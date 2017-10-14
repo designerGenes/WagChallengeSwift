@@ -24,6 +24,7 @@ class UserTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     func didReceiveUserList(list: [User], in controller: RemoteDataController) {
         userArr = list
         tableView?.reloadData()
+        tableView?.backgroundView?.backgroundColor = userArr.count % 2 == 0 ? UIColor.named(.gray_0) : UIColor.named(.gray_1)
     }
     
     // MARK: - UITableView methods
@@ -52,13 +53,7 @@ class UserTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         return UITableViewCell()
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-    }
-    
-    
-    
     // MARK: - methods
     func adopt(tableView: UITableView) {
         tableView.register(UINib(nibName: "UserTableViewCell", bundle: .main), forCellReuseIdentifier: "UserTableViewCell")

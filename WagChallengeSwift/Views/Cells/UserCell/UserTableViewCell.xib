@@ -45,16 +45,13 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Darin Dimitrov" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToG-RA-ISG">
-                        <rect key="frame" x="123" y="17.5" width="323" height="28"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="28" id="vVV-pd-kze"/>
-                        </constraints>
+                        <rect key="frame" x="123" y="18" width="323" height="33"/>
                         <fontDescription key="fontDescription" name="SanFranciscoDisplay-Bold" family="San Francisco Display" pointSize="28"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O32-gp-gwI">
-                        <rect key="frame" x="135" y="45.5" width="159.5" height="28"/>
+                        <rect key="frame" x="135" y="51" width="159.5" height="28"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28" id="v52-aw-Rh2"/>
                         </constraints>

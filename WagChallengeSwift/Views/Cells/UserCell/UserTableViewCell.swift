@@ -40,7 +40,7 @@ class UserTableViewCell: UITableViewCell {
     
     // MARK: - methods
     @objc func touchedDownOnBadgeCount(control: UIControl) {
-        displayNameLabel.attributedText = makeBadgeCountText(goldStr: "GOLD", silvStr: "SILVER", brnzStr: "BRONZE")
+        displayNameLabel.attributedText = makeBadgeCountText(goldStr: "GOLD", silvStr: "SLVR", brnzStr: "BRNZ", size: 24)
     }
     
     @objc func touchedDownOnBadge(control: UIControl) {
@@ -59,7 +59,11 @@ class UserTableViewCell: UITableViewCell {
     }
     
     func revealDescriptionForBadge(badge: IconBadge) {
-        displayNameLabel.text = badge.lore ?? "unknown"
+        displayNameLabel.attributedText = NSAttributedString(string: badge.lore ?? "unknown", attributes: [
+            .font : sfDisplayBold(size: 24),
+            .kern : 2,
+            .foregroundColor: UIColor.white
+            ])
     }
     
     @objc func hideDescriptionText() {
@@ -106,7 +110,7 @@ class UserTableViewCell: UITableViewCell {
         
     }
 
-    private func makeBadgeCountText(goldStr: String, silvStr: String, brnzStr: String) -> NSAttributedString {
+    private func makeBadgeCountText(goldStr: String, silvStr: String, brnzStr: String, size: CGFloat = 22) -> NSAttributedString {
         var badgeCountAttributedString = NSMutableAttributedString(string: "")
         
         let colors = [DesignColor.gold, .silver, .bronze].map({UIColor.named($0)})
@@ -117,7 +121,7 @@ class UserTableViewCell: UITableViewCell {
             }
             
             let attributes: [NSAttributedStringKey: Any] = [
-                .font : sfDisplayBold(size: 22),
+                .font : sfDisplayBold(size: size),
                 .kern : 1.5,
                 .foregroundColor: colors[z]
             ]
@@ -206,7 +210,7 @@ class UserTableViewCell: UITableViewCell {
     
     func adopt(user: User) {
         self.displayName = NSAttributedString(string: user.displayName ?? "unknown", attributes: [
-            .font : sfDisplayBold(size: 30),
+            .font : sfDisplayBold(size: 22),
             .kern : 2,
             .foregroundColor: UIColor.white
             ])
