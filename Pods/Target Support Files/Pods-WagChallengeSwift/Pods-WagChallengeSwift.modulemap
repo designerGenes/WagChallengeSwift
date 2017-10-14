@@ -1,0 +1,6 @@
+framework module Pods_WagChallengeSwift {
+  umbrella header "Pods-WagChallengeSwift-umbrella.h"
+
+  export *
+  module * { export * }
+}
